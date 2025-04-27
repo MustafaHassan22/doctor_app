@@ -22,4 +22,6 @@ extension Navigation on BuildContext {
       argument: argument,
     );
   }
+
+  void pop() => Navigator.of(this).pop();
 }
