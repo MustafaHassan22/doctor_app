@@ -6,7 +6,7 @@ class LoginResponse {
   String? message;
   @JsonKey(name: 'data')
   UserDate? userDate;
-  String? status;
+  bool? status;
   int? code;
 
   LoginResponse({this.message, this.userDate, this.status, this.code});
