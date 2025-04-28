@@ -1,5 +1,13 @@
-dart run build_runner build --delete-conflicting-outputs
-dart run build_runner clean
+build runner 
+-- dart run build_runner build --delete-conflicting-outputs
+-- dart run build_runner clean
 
 
+--  flavors 
+--  flutter run --flavor development
+--  flutter run --flavor production
 
+
+ flutter run --flavor development --dart-define=FLAVOR=development
+
+ flutter run --flavor production --dart-define=FLAVOR=production

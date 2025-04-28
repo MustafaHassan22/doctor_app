@@ -37,6 +37,25 @@ android {
             signingConfig = signingConfigs.getByName("debug")
         }
     }
+
+     flavorDimensions += "default"
+         productFlavors {
+        create("development") {
+            dimension = "default"
+            applicationIdSuffix = ".dev"
+            resValue(
+                type = "string",
+                name = "app_name",
+                value = "Doc Doc development")
+        }
+        create("production") {
+            dimension = "default"
+             resValue(
+                type = "string",
+                name = "app_name",
+                value = "Doc Doc production")
+        }
+    }
 }
 
 flutter {
