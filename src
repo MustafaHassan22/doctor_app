@@ -1,5 +1,39 @@
-dart run build_runner build --delete-conflicting-outputs
-dart run build_runner clean
+
+build runner 
+-- dart run build_runner build --delete-conflicting-outputs
+-- dart run build_runner clean
+
+
+--  flavors 
+--  flutter run --flavor development
+--  flutter run --flavor production
+
+
+ flutter run --flavor development --dart-define=FLAVOR=development
+
+ flutter run --flavor production --dart-define=FLAVOR=production
+
+
+(old way )
+
+ /debug apk/ 
+
+flutter build apk --flavor development --target lib/main_development.dart
+
+ flutter build apk --flavor production --target lib/main_production.dart
 
 
 
+/ release /
+
+flutter build apk --flavor development --target lib/main_development.dart --release
+
+ flutter build apk --flavor production --target lib/main_production.dart --release
+
+ flutter build apk --release --flavor production --target lib/main_production.dart --no-tree-shake-icons
+
+(old way )
+
+
+----------
+1//03PFZVp6eWy4ICgYIARAAGAMSNwF-L9IrJLJVq4loFu34z1bsdirrlGdiXmxbqObJzWEjceSqtWVsis0-tCSBdkfr_mh-ZyPBBEY
