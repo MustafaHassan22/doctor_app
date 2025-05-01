@@ -1,43 +1,74 @@
 
-build runner 
--- dart run build_runner build --delete-conflicting-outputs
--- dart run build_runner clean
+# build runner 
+# -- dart run build_runner build --delete-conflicting-outputs
+# -- dart run build_runner clean
 
 
---  flavors 
---  flutter run --flavor development
---  flutter run --flavor production
+# --  flavors 
+# --  flutter run --flavor development
+# --  flutter run --flavor production
 
 
- flutter run --flavor development --dart-define=FLAVOR=development
+#  flutter run --flavor development --dart-define=FLAVOR=development
 
- flutter run --flavor production --dart-define=FLAVOR=production
-
-
-(old way )
-
- /debug apk/ 
-
-flutter build apk --flavor development --target lib/main_development.dart
-
- flutter build apk --flavor production --target lib/main_production.dart
+#  flutter run --flavor production --dart-define=FLAVOR=production
 
 
+# (old way )
 
-/ release /
+#  /debug apk/ 
 
-flutter build apk --flavor development --target lib/main_development.dart --release
+# flutter build apk --flavor development --target lib/main_development.dart
 
- flutter build apk --flavor production --target lib/main_production.dart --release
-
- flutter build apk --release --flavor production --target lib/main_production.dart --no-tree-shake-icons
-
-(old way )
+#  flutter build apk --flavor production --target lib/main_production.dart
 
 
-----------
-1//03PFZVp6eWy4ICgYIARAAGAMSNwF-L9IrJLJVq4loFu34z1bsdirrlGdiXmxbqObJzWEjceSqtWVsis0-tCSBdkfr_mh-ZyPBBEY
 
-// to make fastlane make apk and release it in firebase distrubution
-fastlane android firebase_distribution  //name ya3ny
-take care u should do this command in adnroid folder in terminal
+# / release /
+
+# flutter build apk --flavor development --target lib/main_development.dart --release
+
+#  flutter build apk --flavor production --target lib/main_production.dart --release
+
+#  flutter build apk --release --flavor production --target lib/main_production.dart --no-tree-shake-icons
+
+# (old way )
+
+
+# ----------
+# 1//03PFZVp6eWy4ICgYIARAAGAMSNwF-L9IrJLJVq4loFu34z1bsdirrlGdiXmxbqObJzWEjceSqtWVsis0-tCSBdkfr_mh-ZyPBBEY
+
+# // to make fastlane make apk and release it in firebase distrubution
+# fastlane android firebase_distribution  //name ya3ny
+# take care u should do this command in adnroid folder in terminal
+
+
+
+
+
+
+
+
+
+#    - name: Build and Distribute App
+#       env:
+#         FIREBASE_CLI_TOKEN: ${{ secrets.FIREBASE_CLI_TOKEN }}
+#       run: |
+#         bundle exec fastlane android firebase_distribution
+#       working-directory: android
+
+#       - name: Cache Flutter dependencies
+#       uses: actions/cache@v3
+#       with:
+#         path: ${{ env.FLUTTER_HOME }}/.pub-cache
+#         key: ${{ runner.os }}-flutter-${{ hashFiles('**/pubspec.lock') }}
+#         restore-keys: ${{ runner.os }}-flutter-
+
+#       - name: Cache Gradle dependencies
+#       uses: actions/cache@v3
+#       with:
+#       path: |
+#         ~/.gradle/caches
+#         ~/.gradle/wrapper
+#       key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+#       restore-keys: ${{ runner.os }}-gradle-
