@@ -37,3 +37,7 @@ flutter build apk --flavor development --target lib/main_development.dart --rele
 
 ----------
 1//03PFZVp6eWy4ICgYIARAAGAMSNwF-L9IrJLJVq4loFu34z1bsdirrlGdiXmxbqObJzWEjceSqtWVsis0-tCSBdkfr_mh-ZyPBBEY
+
+// to make fastlane make apk and release it in firebase distrubution
+fastlane android firebase_distribution  //name ya3ny
+take care u should do this command in adnroid folder in terminal
