@@ -1,0 +1,13 @@
+flutter_native_splash:
+ # IOS & Andriod below 12
+  color: "#ffffff"
+  image: assets/images/splash.png
+
+ 
+  android_12:
+   color: "#ffffff"
+   image: assets/images/splash_andriod12.png
+  #  image: assets/images/Group.png
+  #  icon_background_color: "#ffffff"
+  #  image_dark: assets/images/Group.png
+  #  icon_background_color_dark: "#ffffff"
