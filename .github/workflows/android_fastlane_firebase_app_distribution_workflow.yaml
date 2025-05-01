@@ -26,20 +26,6 @@ jobs:
       - name: Get Flutter dependencies
         run: flutter pub get
       
-      # First check if Gemfile exists, and create one if it doesn't
-      - name: Verify Gemfile
-        run: |
-          if [ ! -f android/Gemfile ]; then
-            echo "Creating Gemfile in android directory"
-            cat > android/Gemfile << 'EOL'
-          source "https://rubygems.org"
-
-          gem "fastlane"
-          gem "firebase_app_distribution"
-          EOL
-          else
-            echo "Gemfile already exists"
-          fi
       
       # Setup Ruby without bundler cache
       - name: Setup Ruby
@@ -53,6 +39,8 @@ jobs:
         run: |
           cd android
           gem install bundler
+          # Add the Linux platform to the bundle
+          bundle lock --add-platform x86_64-linux
           bundle install
         
       # Run fastlane
