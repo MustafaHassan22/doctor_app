@@ -37,7 +37,6 @@ class LoginBlocListener extends StatelessWidget {
             context.pop();
             setupErrorState(context, message);
           case Initial():
-            // TODO: Handle this case.
             throw UnimplementedError();
         }
       },

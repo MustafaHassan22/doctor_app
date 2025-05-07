@@ -6,11 +6,11 @@ part 'home_state.freezed.dart';
 
 @freezed
 class HomeState with _$HomeState {
-  const factory HomeState.initial() = _Initial;
-  const factory HomeState.specializationLoading() = _SpecializationLoading;
+  const factory HomeState.initial() = Initial;
+  const factory HomeState.specializationLoading() = SpecializationLoading;
   const factory HomeState.specializationSuccess(
     SpecializationResponseModel specializationResponseModel,
-  ) = _SpecializationSuccess;
+  ) = SpecializationSuccess;
   const factory HomeState.specializationFailure(ErrorHandler errorHandler) =
-      _SpecializationFailure;
+      SpecializationFailure;
 }

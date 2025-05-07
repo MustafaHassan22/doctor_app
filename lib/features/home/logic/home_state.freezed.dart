@@ -45,8 +45,8 @@ $HomeStateCopyWith(HomeState _, $Res Function(HomeState) __);
 /// @nodoc
 
 
-class _Initial implements HomeState {
-  const _Initial();
+class Initial implements HomeState {
+  const Initial();
   
 
 
@@ -56,7 +56,7 @@ class _Initial implements HomeState {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Initial);
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Initial);
 }
 
 
@@ -77,8 +77,8 @@ String toString() {
 /// @nodoc
 
 
-class _SpecializationLoading implements HomeState {
-  const _SpecializationLoading();
+class SpecializationLoading implements HomeState {
+  const SpecializationLoading();
   
 
 
@@ -88,7 +88,7 @@ class _SpecializationLoading implements HomeState {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SpecializationLoading);
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SpecializationLoading);
 }
 
 
@@ -109,8 +109,8 @@ String toString() {
 /// @nodoc
 
 
-class _SpecializationSuccess implements HomeState {
-  const _SpecializationSuccess(this.specializationResponseModel);
+class SpecializationSuccess implements HomeState {
+  const SpecializationSuccess(this.specializationResponseModel);
   
 
  final  SpecializationResponseModel specializationResponseModel;
@@ -119,13 +119,13 @@ class _SpecializationSuccess implements HomeState {
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-_$SpecializationSuccessCopyWith<_SpecializationSuccess> get copyWith => __$SpecializationSuccessCopyWithImpl<_SpecializationSuccess>(this, _$identity);
+$SpecializationSuccessCopyWith<SpecializationSuccess> get copyWith => _$SpecializationSuccessCopyWithImpl<SpecializationSuccess>(this, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SpecializationSuccess&&(identical(other.specializationResponseModel, specializationResponseModel) || other.specializationResponseModel == specializationResponseModel));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SpecializationSuccess&&(identical(other.specializationResponseModel, specializationResponseModel) || other.specializationResponseModel == specializationResponseModel));
 }
 
 
@@ -141,8 +141,8 @@ String toString() {
 }
 
 /// @nodoc
-abstract mixin class _$SpecializationSuccessCopyWith<$Res> implements $HomeStateCopyWith<$Res> {
-  factory _$SpecializationSuccessCopyWith(_SpecializationSuccess value, $Res Function(_SpecializationSuccess) _then) = __$SpecializationSuccessCopyWithImpl;
+abstract mixin class $SpecializationSuccessCopyWith<$Res> implements $HomeStateCopyWith<$Res> {
+  factory $SpecializationSuccessCopyWith(SpecializationSuccess value, $Res Function(SpecializationSuccess) _then) = _$SpecializationSuccessCopyWithImpl;
 @useResult
 $Res call({
  SpecializationResponseModel specializationResponseModel
@@ -153,17 +153,17 @@ $Res call({
 
 }
 /// @nodoc
-class __$SpecializationSuccessCopyWithImpl<$Res>
-    implements _$SpecializationSuccessCopyWith<$Res> {
-  __$SpecializationSuccessCopyWithImpl(this._self, this._then);
+class _$SpecializationSuccessCopyWithImpl<$Res>
+    implements $SpecializationSuccessCopyWith<$Res> {
+  _$SpecializationSuccessCopyWithImpl(this._self, this._then);
 
-  final _SpecializationSuccess _self;
-  final $Res Function(_SpecializationSuccess) _then;
+  final SpecializationSuccess _self;
+  final $Res Function(SpecializationSuccess) _then;
 
 /// Create a copy of HomeState
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') $Res call({Object? specializationResponseModel = null,}) {
-  return _then(_SpecializationSuccess(
+  return _then(SpecializationSuccess(
 null == specializationResponseModel ? _self.specializationResponseModel : specializationResponseModel // ignore: cast_nullable_to_non_nullable
 as SpecializationResponseModel,
   ));
@@ -175,8 +175,8 @@ as SpecializationResponseModel,
 /// @nodoc
 
 
-class _SpecializationFailure implements HomeState {
-  const _SpecializationFailure(this.errorHandler);
+class SpecializationFailure implements HomeState {
+  const SpecializationFailure(this.errorHandler);
   
 
  final  ErrorHandler errorHandler;
@@ -185,13 +185,13 @@ class _SpecializationFailure implements HomeState {
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-_$SpecializationFailureCopyWith<_SpecializationFailure> get copyWith => __$SpecializationFailureCopyWithImpl<_SpecializationFailure>(this, _$identity);
+$SpecializationFailureCopyWith<SpecializationFailure> get copyWith => _$SpecializationFailureCopyWithImpl<SpecializationFailure>(this, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SpecializationFailure&&(identical(other.errorHandler, errorHandler) || other.errorHandler == errorHandler));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SpecializationFailure&&(identical(other.errorHandler, errorHandler) || other.errorHandler == errorHandler));
 }
 
 
@@ -207,8 +207,8 @@ String toString() {
 }
 
 /// @nodoc
-abstract mixin class _$SpecializationFailureCopyWith<$Res> implements $HomeStateCopyWith<$Res> {
-  factory _$SpecializationFailureCopyWith(_SpecializationFailure value, $Res Function(_SpecializationFailure) _then) = __$SpecializationFailureCopyWithImpl;
+abstract mixin class $SpecializationFailureCopyWith<$Res> implements $HomeStateCopyWith<$Res> {
+  factory $SpecializationFailureCopyWith(SpecializationFailure value, $Res Function(SpecializationFailure) _then) = _$SpecializationFailureCopyWithImpl;
 @useResult
 $Res call({
  ErrorHandler errorHandler
@@ -219,17 +219,17 @@ $Res call({
 
 }
 /// @nodoc
-class __$SpecializationFailureCopyWithImpl<$Res>
-    implements _$SpecializationFailureCopyWith<$Res> {
-  __$SpecializationFailureCopyWithImpl(this._self, this._then);
+class _$SpecializationFailureCopyWithImpl<$Res>
+    implements $SpecializationFailureCopyWith<$Res> {
+  _$SpecializationFailureCopyWithImpl(this._self, this._then);
 
-  final _SpecializationFailure _self;
-  final $Res Function(_SpecializationFailure) _then;
+  final SpecializationFailure _self;
+  final $Res Function(SpecializationFailure) _then;
 
 /// Create a copy of HomeState
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') $Res call({Object? errorHandler = null,}) {
-  return _then(_SpecializationFailure(
+  return _then(SpecializationFailure(
 null == errorHandler ? _self.errorHandler : errorHandler // ignore: cast_nullable_to_non_nullable
 as ErrorHandler,
   ));
