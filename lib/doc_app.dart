@@ -1,3 +1,4 @@
+import 'package:doctor_app/core/helpers/constants.dart';
 import 'package:doctor_app/core/routing/app_router.dart';
 import 'package:doctor_app/core/routing/routes.dart';
 import 'package:doctor_app/core/theme/colors.dart';
@@ -19,7 +20,7 @@ class DocApp extends StatelessWidget {
           scaffoldBackgroundColor: Colors.white,
         ),
         debugShowCheckedModeBanner: false,
-        initialRoute: Routes.homeScreen,
+        initialRoute: isLoggedInUser ? Routes.homeScreen : Routes.loginScreen,
         onGenerateRoute: appRouter.generateRoute,
       ),
     );
