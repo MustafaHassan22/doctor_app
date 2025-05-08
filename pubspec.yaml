@@ -61,6 +61,10 @@ dependencies:
   #A flutter plugin for adapting screen and font size.Guaranteed to look good on different models
   flutter_screenutil: ^5.9.3
   firebase_core: ^3.13.0
+  #Flutter plugin for reading and writing simple key-value pairs. Wraps NSUserDefaults on iOS and SharedPreferences on Android.
+  shared_preferences: ^2.5.3
+  #provides API to store data in secure storage.
+  flutter_secure_storage: ^9.2.4
 
 dev_dependencies:
   flutter_test:
