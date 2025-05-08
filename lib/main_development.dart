@@ -10,20 +10,21 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await checkedIfLoggedUser();
   // To fix texts being hidden bug in flutter_screenutil in release mode.
   await ScreenUtil.ensureScreenSize();
   setupGetIt();
+
+  await checkedIfLoggedUser();
   runApp(DocApp(appRouter: AppRouter()));
 }
 
 checkedIfLoggedUser() async {
-  String? userToken = await SharedPrefHelper.getString(
+  String? userToken = await SharedPrefHelper.getSecuredString(
     SharedPrefKeys.userToken,
   );
   if (!userToken.isNullOrEmpty()) {
     isLoggedInUser = true;
-    // DioFactory.addDioHeader();
+    DioFactory.addDioHeader();
   } else {
     isLoggedInUser = false;
   }
