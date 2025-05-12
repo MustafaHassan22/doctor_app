@@ -22,7 +22,7 @@ class HomeScreenAppBar extends StatelessWidget {
         const Spacer(),
         CircleAvatar(
           radius: 24.0,
-          backgroundColor: ColorsManager.lithtgrr,
+          backgroundColor: ColorsManager.lightBlue,
           child: SvgPicture.asset(
             'assets/svgs/notofication.svg',
             alignment: Alignment.center,

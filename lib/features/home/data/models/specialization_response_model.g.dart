@@ -30,7 +30,12 @@ SpecializationData _$SpecializationDataFromJson(Map<String, dynamic> json) =>
       name: json['name'] as String?,
       doctorsList:
           (json['doctors'] as List<dynamic>?)
-              ?.map((e) => Doctors.fromJson(e as Map<String, dynamic>))
+              ?.map(
+                (e) =>
+                    e == null
+                        ? null
+                        : Doctors.fromJson(e as Map<String, dynamic>),
+              )
               .toList(),
     );
 

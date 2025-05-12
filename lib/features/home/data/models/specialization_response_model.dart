@@ -15,7 +15,7 @@ class SpecializationData {
   int? id;
   String? name;
   @JsonKey(name: 'doctors')
-  List<Doctors>? doctorsList;
+  List<Doctors?>? doctorsList;
 
   SpecializationData({this.id, this.name, this.doctorsList});
 
