@@ -61,8 +61,8 @@ class SignUpScreen extends StatelessWidget {
   }
 
   void validateThenSignUp(BuildContext context) {
-    if (context.read<SignUpCubit>().formKey.currentState!.validate()) {
-      context.read<SignUpCubit>().emitSignUpStates();
-    }
+    // if (context.read<SignUpCubit>().formKey.currentState!.validate()) {
+    context.read<SignUpCubit>().emitSignUpStates();
+    // }
   }
 }

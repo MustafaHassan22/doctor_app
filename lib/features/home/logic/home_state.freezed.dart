@@ -184,10 +184,10 @@ as List<SpecializationData?>?,
 
 
 class SpecializationFailure implements HomeState {
-  const SpecializationFailure(this.errorHandler);
+  const SpecializationFailure(this.apiErrorModel);
   
 
- final  ApiErrorHandler errorHandler;
+ final  ApiErrorModel apiErrorModel;
 
 /// Create a copy of HomeState
 /// with the given fields replaced by the non-null parameter values.
@@ -199,16 +199,16 @@ $SpecializationFailureCopyWith<SpecializationFailure> get copyWith => _$Speciali
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SpecializationFailure&&(identical(other.errorHandler, errorHandler) || other.errorHandler == errorHandler));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SpecializationFailure&&(identical(other.apiErrorModel, apiErrorModel) || other.apiErrorModel == apiErrorModel));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,errorHandler);
+int get hashCode => Object.hash(runtimeType,apiErrorModel);
 
 @override
 String toString() {
-  return 'HomeState.specializationFailure(errorHandler: $errorHandler)';
+  return 'HomeState.specializationFailure(apiErrorModel: $apiErrorModel)';
 }
 
 
@@ -219,7 +219,7 @@ abstract mixin class $SpecializationFailureCopyWith<$Res> implements $HomeStateC
   factory $SpecializationFailureCopyWith(SpecializationFailure value, $Res Function(SpecializationFailure) _then) = _$SpecializationFailureCopyWithImpl;
 @useResult
 $Res call({
- ApiErrorHandler errorHandler
+ ApiErrorModel apiErrorModel
 });
 
 
@@ -236,10 +236,10 @@ class _$SpecializationFailureCopyWithImpl<$Res>
 
 /// Create a copy of HomeState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? errorHandler = null,}) {
+@pragma('vm:prefer-inline') $Res call({Object? apiErrorModel = null,}) {
   return _then(SpecializationFailure(
-null == errorHandler ? _self.errorHandler : errorHandler // ignore: cast_nullable_to_non_nullable
-as ApiErrorHandler,
+null == apiErrorModel ? _self.apiErrorModel : apiErrorModel // ignore: cast_nullable_to_non_nullable
+as ApiErrorModel,
   ));
 }
 
@@ -324,66 +324,32 @@ as List<Doctors?>?,
 
 
 class DoctorsFailure implements HomeState {
-  const DoctorsFailure(this.errorHandler);
+  const DoctorsFailure();
   
 
- final  ApiErrorHandler errorHandler;
 
-/// Create a copy of HomeState
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-$DoctorsFailureCopyWith<DoctorsFailure> get copyWith => _$DoctorsFailureCopyWithImpl<DoctorsFailure>(this, _$identity);
+
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is DoctorsFailure&&(identical(other.errorHandler, errorHandler) || other.errorHandler == errorHandler));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is DoctorsFailure);
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,errorHandler);
+int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'HomeState.doctorsFailure(errorHandler: $errorHandler)';
+  return 'HomeState.doctorsFailure()';
 }
 
 
 }
 
-/// @nodoc
-abstract mixin class $DoctorsFailureCopyWith<$Res> implements $HomeStateCopyWith<$Res> {
-  factory $DoctorsFailureCopyWith(DoctorsFailure value, $Res Function(DoctorsFailure) _then) = _$DoctorsFailureCopyWithImpl;
-@useResult
-$Res call({
- ApiErrorHandler errorHandler
-});
 
 
-
-
-}
-/// @nodoc
-class _$DoctorsFailureCopyWithImpl<$Res>
-    implements $DoctorsFailureCopyWith<$Res> {
-  _$DoctorsFailureCopyWithImpl(this._self, this._then);
-
-  final DoctorsFailure _self;
-  final $Res Function(DoctorsFailure) _then;
-
-/// Create a copy of HomeState
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? errorHandler = null,}) {
-  return _then(DoctorsFailure(
-null == errorHandler ? _self.errorHandler : errorHandler // ignore: cast_nullable_to_non_nullable
-as ApiErrorHandler,
-  ));
-}
-
-
-}
 
 // dart format on

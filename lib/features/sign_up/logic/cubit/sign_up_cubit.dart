@@ -1,4 +1,3 @@
-import 'package:doctor_app/core/networking/api_result.dart' as apisignup;
 import 'package:doctor_app/features/sign_up/data/models/sign_up_request_body.dart';
 import 'package:doctor_app/features/sign_up/data/repo/sign_up_repo.dart';
 import 'package:doctor_app/features/sign_up/logic/cubit/sign_up_state.dart';
@@ -19,7 +18,7 @@ class SignUpCubit extends Cubit<SignUpState> {
   final formKey = GlobalKey<FormState>();
 
   void emitSignUpStates() async {
-    emit(const SignUpState.loadign());
+    emit(const SignUpState.signUpLoadign());
     final response = await _signUpRepo.signup(
       SignUpRequestBody(
         name: nameController.text,
@@ -31,17 +30,11 @@ class SignUpCubit extends Cubit<SignUpState> {
       ),
     );
     switch (response) {
-      case apisignup.Success(data: final signUpRespone):
-        emit(SignUpState.success(signUpRespone));
+      case SignUpSuccess(data: final signUpRespone):
+        emit(SignUpState.signUpSuccess(signUpRespone));
 
-      case apisignup.Failure(errorHandler: final error):
-        emit(
-          SignUpState.failure(
-            message:
-                error.apiErrorModel.message ??
-                'Failed to Sign up. please try again',
-          ),
-        );
+      case SignUpFailure(apiErrorModel: final error):
+        emit(SignUpState.signUpFailure(error));
     }
   }
 }

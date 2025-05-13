@@ -1,4 +1,3 @@
-import 'package:doctor_app/core/networking/api_error_handler.dart';
 import 'package:doctor_app/features/home/data/models/specialization_response_model.dart';
 import 'package:doctor_app/features/home/logic/home_cubit.dart';
 import 'package:doctor_app/features/home/logic/home_state.dart';
@@ -21,8 +20,8 @@ class DoctorsBlocBuilder extends StatelessWidget {
             return setupSuccess(
               doctorList,
             ); // Now DoctorsList should handle scrolling
-          case DoctorsFailure(errorHandler: final errorHandler):
-            return setupError(errorHandler);
+          case DoctorsFailure():
+            return setupError();
           default:
             return const SizedBox.shrink(); // Or a loading indicator
         }
@@ -34,7 +33,7 @@ class DoctorsBlocBuilder extends StatelessWidget {
     return DoctorsList(doctorsList: doctorList);
   }
 
-  Widget setupError(ApiErrorHandler errorHandler) {
+  Widget setupError() {
     return const SizedBox.shrink();
   }
 }
