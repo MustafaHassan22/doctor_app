@@ -187,7 +187,7 @@ class SpecializationFailure implements HomeState {
   const SpecializationFailure(this.errorHandler);
   
 
- final  ErrorHandler errorHandler;
+ final  ApiErrorHandler errorHandler;
 
 /// Create a copy of HomeState
 /// with the given fields replaced by the non-null parameter values.
@@ -219,7 +219,7 @@ abstract mixin class $SpecializationFailureCopyWith<$Res> implements $HomeStateC
   factory $SpecializationFailureCopyWith(SpecializationFailure value, $Res Function(SpecializationFailure) _then) = _$SpecializationFailureCopyWithImpl;
 @useResult
 $Res call({
- ErrorHandler errorHandler
+ ApiErrorHandler errorHandler
 });
 
 
@@ -239,7 +239,7 @@ class _$SpecializationFailureCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') $Res call({Object? errorHandler = null,}) {
   return _then(SpecializationFailure(
 null == errorHandler ? _self.errorHandler : errorHandler // ignore: cast_nullable_to_non_nullable
-as ErrorHandler,
+as ApiErrorHandler,
   ));
 }
 
@@ -327,7 +327,7 @@ class DoctorsFailure implements HomeState {
   const DoctorsFailure(this.errorHandler);
   
 
- final  ErrorHandler errorHandler;
+ final  ApiErrorHandler errorHandler;
 
 /// Create a copy of HomeState
 /// with the given fields replaced by the non-null parameter values.
@@ -359,7 +359,7 @@ abstract mixin class $DoctorsFailureCopyWith<$Res> implements $HomeStateCopyWith
   factory $DoctorsFailureCopyWith(DoctorsFailure value, $Res Function(DoctorsFailure) _then) = _$DoctorsFailureCopyWithImpl;
 @useResult
 $Res call({
- ErrorHandler errorHandler
+ ApiErrorHandler errorHandler
 });
 
 
@@ -379,7 +379,7 @@ class _$DoctorsFailureCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') $Res call({Object? errorHandler = null,}) {
   return _then(DoctorsFailure(
 null == errorHandler ? _self.errorHandler : errorHandler // ignore: cast_nullable_to_non_nullable
-as ErrorHandler,
+as ApiErrorHandler,
   ));
 }
 

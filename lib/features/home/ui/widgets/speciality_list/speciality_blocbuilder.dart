@@ -40,7 +40,7 @@ class SpecialityBlocbuilder extends StatelessWidget {
     );
   }
 
-  Widget setupFailure(ErrorHandler errorHandler) {
+  Widget setupFailure(ApiErrorHandler errorHandler) {
     return Center(
       child: Text(
         errorHandler.toString(),

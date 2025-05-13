@@ -115,7 +115,7 @@ class Failure<T> implements ApiResult<T> {
   const Failure(this.errorHandler);
   
 
- final  ErrorHandler errorHandler;
+ final  ApiErrorHandler errorHandler;
 
 /// Create a copy of ApiResult
 /// with the given fields replaced by the non-null parameter values.
@@ -147,7 +147,7 @@ abstract mixin class $FailureCopyWith<T,$Res> implements $ApiResultCopyWith<T, $
   factory $FailureCopyWith(Failure<T> value, $Res Function(Failure<T>) _then) = _$FailureCopyWithImpl;
 @useResult
 $Res call({
- ErrorHandler errorHandler
+ ApiErrorHandler errorHandler
 });
 
 
@@ -167,7 +167,7 @@ class _$FailureCopyWithImpl<T,$Res>
 @pragma('vm:prefer-inline') $Res call({Object? errorHandler = null,}) {
   return _then(Failure<T>(
 null == errorHandler ? _self.errorHandler : errorHandler // ignore: cast_nullable_to_non_nullable
-as ErrorHandler,
+as ApiErrorHandler,
   ));
 }
 

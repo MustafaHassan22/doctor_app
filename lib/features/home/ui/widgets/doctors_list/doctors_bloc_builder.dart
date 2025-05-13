@@ -34,7 +34,7 @@ class DoctorsBlocBuilder extends StatelessWidget {
     return DoctorsList(doctorsList: doctorList);
   }
 
-  Widget setupError(ErrorHandler errorHandler) {
+  Widget setupError(ApiErrorHandler errorHandler) {
     return const SizedBox.shrink();
   }
 }

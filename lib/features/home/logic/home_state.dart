@@ -12,12 +12,12 @@ class HomeState with _$HomeState {
   const factory HomeState.specializationSuccess(
     List<SpecializationData?>? specializationData,
   ) = SpecializationSuccess;
-  const factory HomeState.specializationFailure(ErrorHandler errorHandler) =
+  const factory HomeState.specializationFailure(ApiErrorHandler errorHandler) =
       SpecializationFailure;
 
   //doctors
   const factory HomeState.doctorsSuccess(List<Doctors?>? doctorsList) =
       DoctorsSuccess;
-  const factory HomeState.doctorsFailure(ErrorHandler errorHandler) =
+  const factory HomeState.doctorsFailure(ApiErrorHandler errorHandler) =
       DoctorsFailure;
 }
