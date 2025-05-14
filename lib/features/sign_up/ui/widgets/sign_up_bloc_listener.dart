@@ -30,7 +30,6 @@ class SignUpBlocListener extends StatelessWidget {
             showSuccessDialog(context);
 
           case SignUpFailure(apiErrorModel: final apiErrorModel):
-            context.pop();
             setupErrorState(context, apiErrorModel);
         }
       },

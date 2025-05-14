@@ -1,3 +1,4 @@
+import 'package:doctor_app/core/networking/api_result.dart';
 import 'package:doctor_app/features/sign_up/data/models/sign_up_request_body.dart';
 import 'package:doctor_app/features/sign_up/data/repo/sign_up_repo.dart';
 import 'package:doctor_app/features/sign_up/logic/cubit/sign_up_state.dart';
@@ -30,10 +31,10 @@ class SignUpCubit extends Cubit<SignUpState> {
       ),
     );
     switch (response) {
-      case SignUpSuccess(data: final signUpRespone):
+      case Success(data: final signUpRespone):
         emit(SignUpState.signUpSuccess(signUpRespone));
 
-      case SignUpFailure(apiErrorModel: final error):
+      case Failure(apiErrorModel: final error):
         emit(SignUpState.signUpFailure(error));
     }
   }
