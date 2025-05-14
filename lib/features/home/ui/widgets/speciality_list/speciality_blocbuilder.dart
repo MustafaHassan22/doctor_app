@@ -1,5 +1,5 @@
 import 'package:doctor_app/core/helpers/spacing_helper.dart';
-import 'package:doctor_app/core/networking/api_error_handler.dart';
+import 'package:doctor_app/core/networking/api_error_model.dart';
 import 'package:doctor_app/features/home/data/models/specialization_response_model.dart';
 import 'package:doctor_app/features/home/logic/home_cubit.dart';
 import 'package:doctor_app/features/home/logic/home_state.dart';
@@ -30,8 +30,8 @@ class SpecialityBlocbuilder extends StatelessWidget {
           ):
             var specializationList = specializationDataList;
             return setupSuccess(specializationList!);
-          case SpecializationFailure(errorHandler: final errorHandler):
-            return setupFailure(errorHandler);
+          case SpecializationFailure(apiErrorModel: final apiErrorModel):
+            return setupFailure(apiErrorModel);
 
           default:
             return throw UnimplementedError();
@@ -40,10 +40,10 @@ class SpecialityBlocbuilder extends StatelessWidget {
     );
   }
 
-  Widget setupFailure(ErrorHandler errorHandler) {
+  Widget setupFailure(ApiErrorModel apiErrorModel) {
     return Center(
       child: Text(
-        errorHandler.toString(),
+        apiErrorModel.toString(),
         style: const TextStyle(color: Colors.red),
       ),
     );

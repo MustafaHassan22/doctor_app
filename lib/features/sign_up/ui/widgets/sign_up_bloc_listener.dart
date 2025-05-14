@@ -1,4 +1,5 @@
 import 'package:doctor_app/core/helpers/extensions.dart';
+import 'package:doctor_app/core/networking/api_error_model.dart';
 import 'package:doctor_app/core/theme/colors.dart';
 import 'package:doctor_app/core/theme/styles.dart';
 import 'package:doctor_app/features/sign_up/logic/cubit/sign_up_cubit.dart';
@@ -16,36 +17,40 @@ class SignUpBlocListener extends StatelessWidget {
     return BlocListener<SignUpCubit, SignUpState>(
       listenWhen:
           (previous, current) =>
-              current is Loading || current is Success || current is Failure,
+              current is SignUpLoadign ||
+              current is SignUpSuccess ||
+              current is SignUpFailure,
 
       listener: (context, state) {
         switch (state) {
-          case Loading():
-            showDialog(
-              context: context,
-              builder:
-                  (context) => const Center(
-                    child: CircularProgressIndicator(
-                      color: ColorsManager.mainBlue,
-                    ),
-                  ),
-            );
-          case Success():
+          case SignUpLoadign():
+            showLoadingDialog(context);
+          case SignUpSuccess():
             context.pop();
             showSuccessDialog(context);
 
-          case Failure(message: final message):
-            context.pop();
-            setupErrorState(context, message);
+          case SignUpFailure(apiErrorModel: final apiErrorModel):
+            setupErrorState(context, apiErrorModel);
         }
       },
       child: const SizedBox.shrink(),
     );
   }
 
+  void showLoadingDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder:
+          (context) => const Center(
+            child: CircularProgressIndicator(color: ColorsManager.mainBlue),
+          ),
+    );
+  }
+
   void showSuccessDialog(BuildContext context) {
     showDialog(
       context: context,
+      barrierDismissible: false,
       builder: (BuildContext context) {
         return AlertDialog(
           title: const Text('Signup Successful'),
@@ -74,14 +79,17 @@ class SignUpBlocListener extends StatelessWidget {
     );
   }
 
-  void setupErrorState(BuildContext context, String error) {
+  void setupErrorState(BuildContext context, ApiErrorModel error) {
     context.pop();
     showDialog(
       context: context,
       builder:
           (context) => AlertDialog(
             icon: const Icon(Icons.error, color: Colors.red, size: 32),
-            content: Text(error, style: TextStyles.font15DarkBlueMedium),
+            content: Text(
+              error.getAllErrorMessages(),
+              style: TextStyles.font15DarkBlueMedium,
+            ),
             actions: [
               TextButton(
                 onPressed: () {

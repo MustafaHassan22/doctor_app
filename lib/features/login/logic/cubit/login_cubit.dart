@@ -1,6 +1,6 @@
 import 'package:doctor_app/core/helpers/constants.dart';
 import 'package:doctor_app/core/helpers/shared_pref_helper.dart';
-import 'package:doctor_app/core/networking/api_result.dart' as api;
+import 'package:doctor_app/core/networking/api_result.dart';
 import 'package:doctor_app/core/networking/dio_factory.dart';
 import 'package:doctor_app/features/login/data/models/login_request_body.dart';
 import 'package:doctor_app/features/login/data/repo/login_repo.dart';
@@ -19,7 +19,7 @@ class LoginCubit extends Cubit<LoginState> {
   final GlobalKey<FormState> formKey = GlobalKey();
 
   void emitLoginStates() async {
-    emit(const LoginState.loading());
+    emit(const LoginState.loginLoading());
     final response = await _loginRepo.login(
       LoginRequestBody(
         email: emailController.text,
@@ -28,17 +28,11 @@ class LoginCubit extends Cubit<LoginState> {
     );
 
     switch (response) {
-      case api.Success(data: final loginResponse):
-        await saveUserToken(loginResponse.userDate?.token ?? '');
-        emit(LoginState.success(loginResponse));
-      case api.Failure(errorHandler: final error):
-        emit(
-          LoginState.failure(
-            message:
-                error.apiErrorModel.message ??
-                'Failed to log in. Please try again.',
-          ),
-        );
+      case Success(data: final loginResponse):
+        await saveUserToken(loginResponse.userData?.token ?? '');
+        emit(LoginState.loginSuccess(loginResponse));
+      case Failure(apiErrorModel: final error):
+        emit(LoginState.loginFailure(error));
     }
   }
 
@@ -48,3 +42,4 @@ class LoginCubit extends Cubit<LoginState> {
     isLoggedInUser = true;
   }
 }
+// 'Failed to log in. Please try again.'

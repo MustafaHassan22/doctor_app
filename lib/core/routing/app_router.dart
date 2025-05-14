@@ -11,7 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AppRouter {
-  Route generateRoute(RouteSettings settings) {
+  Route? generateRoute(RouteSettings settings) {
     //this argument to be passed in any screen like this { argument as ClassName }
     final argument = settings.arguments;
     switch (settings.name) {
@@ -46,9 +46,7 @@ class AppRouter {
         );
 
       default:
-        return MaterialPageRoute(
-          builder: (_) => Scaffold(body: Center(child: Text('no page here '))),
-        );
+        return null;
     }
   }
 }
