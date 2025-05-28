@@ -72,8 +72,3 @@
 #         ~/.gradle/wrapper
 #       key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
 #       restore-keys: ${{ runner.os }}-gradle-
-
-
-
-# token faltalne ios
-# 1//03edwLg5fYM_uCgYIARAAGAMSNwF-L9Ir2RpzbZ0SOQ5jSE95a5BEyLChhuGMDOYFnBWk1vbhdnTYsYw3L75jrw2JDOCTzvzTqGY 
