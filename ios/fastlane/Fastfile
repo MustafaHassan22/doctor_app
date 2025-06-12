@@ -1,0 +1,58 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:ios)
+
+platform :ios do
+  desc "Lane for Firebase Distribution"
+  lane :firebase_distribution do
+    # Clean the Flutter project
+    sh "flutter clean"
+
+    # Build the iOS release archive
+    # This command builds the iOS app as an .xcarchive and then exports it as an .ipa
+    # The output path needs to be specified for the .ipa file.
+    # --no-tree-shake-icons is added for consistency with your Android build,
+    # though it might not be strictly necessary for iOS unless you have icon issues.
+    sh "flutter build ios --release --no-tree-shake-icons"
+
+    # Path to the generated .ipa file.
+    # After `flutter build ios --release`, the .ipa is typically found in
+    # `build/ios/archive/Release.xcarchive/Products/Applications/` or similar.
+    # However, fastlane firebase_app_distribution can often detect it automatically
+    # if it's placed in a standard build output directory like `build/ios/ipa`.
+    # For a simple setup, you can often just point it to the .ipa directly after `flutter build ios`.
+    # A more robust approach might involve using `gym` action to explicitly export the .ipa.
+    # For now, we'll assume a common path or let fastlane find it.
+    # If this path doesn't work, you might need to adjust based on your specific build output.
+    # A common output path after `flutter build ios --release` for the .ipa is within `build/ios/archive/`
+    # You might need to adjust this path based on your exact `flutter build` output.
+    # A common convention is `build/ios/ipa/*.ipa` if you explicitly export it there.
+    # For simplicity, let's assume it's directly in `build/ios/ipa` after the flutter build.
+    # **IMPORTANT**: You might need to confirm the exact path where your .ipa is generated.
+    # If `firebase_app_distribution` fails to find it, you'll see an error message with the expected path.
+    # Usually, `flutter build ios --release` places the IPA directly in `build/ios/ipa/Runner.ipa`.
+    ipa_path = "./build/ios/ipa/Runner.ipa"
+
+    # Distribute the IPA to Firebase App Distribution
+    firebase_app_distribution(
+      app: "1:1098369115685:ios:f291ae77bed920ee2501cc", # Replace with your actual iOS Firebase App ID
+      firebase_cli_token: ENV["FIREBASE_CLI_TOKEN"],
+      ipa_path: ipa_path,
+      testers: "moohamedmosstafa@gmail.com",
+      release_notes: "First release by fastlane yooooou (iOS)"
+    )
+  end
+end

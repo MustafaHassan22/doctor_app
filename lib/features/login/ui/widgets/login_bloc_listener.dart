@@ -1,4 +1,5 @@
 import 'package:doctor_app/core/helpers/extensions.dart';
+import 'package:doctor_app/core/networking/api_error_model.dart';
 import 'package:doctor_app/core/routing/routes.dart';
 import 'package:doctor_app/core/theme/colors.dart';
 import 'package:doctor_app/core/theme/styles.dart';
@@ -15,11 +16,13 @@ class LoginBlocListener extends StatelessWidget {
     return BlocListener<LoginCubit, LoginState>(
       listenWhen:
           (previous, current) =>
-              current is Loading || current is Success || current is Failure,
+              current is LoginLoading ||
+              current is LoginSuccess ||
+              current is LoginFailure,
 
       listener: (context, state) {
         switch (state) {
-          case Loading():
+          case LoginLoading():
             showDialog(
               context: context,
               builder:
@@ -29,15 +32,14 @@ class LoginBlocListener extends StatelessWidget {
                     ),
                   ),
             );
-          case Success():
+          case LoginSuccess():
             context.pop();
             context.pushNamed(Routes.homeScreen);
 
-          case Failure(message: final message):
+          case LoginFailure(apiErrorModel: final apiErrorModel):
             context.pop();
-            setupErrorState(context, message);
+            setupErrorState(context, apiErrorModel);
           case Initial():
-            // TODO: Handle this case.
             throw UnimplementedError();
         }
       },
@@ -45,14 +47,17 @@ class LoginBlocListener extends StatelessWidget {
     );
   }
 
-  void setupErrorState(BuildContext context, String error) {
+  void setupErrorState(BuildContext context, ApiErrorModel error) {
     context.pop();
     showDialog(
       context: context,
       builder:
           (context) => AlertDialog(
             icon: const Icon(Icons.error, color: Colors.red, size: 32),
-            content: Text(error, style: TextStyles.font15DarkBlueMedium),
+            content: Text(
+              error.getAllErrorMessages(),
+              style: TextStyles.font15DarkBlueMedium,
+            ),
             actions: [
               TextButton(
                 onPressed: () {

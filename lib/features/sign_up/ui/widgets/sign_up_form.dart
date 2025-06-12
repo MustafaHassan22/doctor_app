@@ -4,7 +4,6 @@ import 'package:doctor_app/core/widgets/app_text_form_field.dart';
 import 'package:doctor_app/features/login/ui/widgets/password_validations.dart';
 import 'package:doctor_app/features/sign_up/logic/cubit/sign_up_cubit.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SignupForm extends StatefulWidget {

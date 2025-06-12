@@ -1,0 +1,91 @@
+name: iOS Fastlane with Firebase App Distribution Workflow
+
+on:
+  push:
+    branches:
+      - main # This workflow will run on pushes to the 'main' branch
+
+jobs:
+  distribute_to_firebase:
+    # iOS builds require a macOS runner
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout my repo code
+        uses: actions/checkout@v3
+
+      - name: Set up JDK 17
+        # JDK is often needed for Flutter's internal build tools, even for iOS
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Install Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable # Use the stable Flutter channel
+          # If a specific Xcode version is required for your Flutter SDK, uncomment and set it here:
+          # xcode-version: '14.3'
+
+      - name: Get Flutter dependencies
+        run: flutter pub get
+
+      - name: Setup Ruby
+        # Fastlane is a Ruby-based tool, so Ruby needs to be set up.
+        # `bundler-cache: false` ensures a fresh install of gems, similar to your Android workflow.
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3.0' # Ensure this matches your local Ruby version if you have issues
+          bundler-cache: false
+
+      - name: Install Bundler and dependencies
+        run: |
+          cd ios # Navigate into the iOS directory where your Fastfile is located
+          gem install bundler # Install Bundler gem
+          # Add the macOS platform to the bundle lock file to ensure correct gem binaries are installed
+          bundle lock --add-platform arm64-darwin # Or x86_64-darwin if your runner architecture requires it
+          bundle install # Install Fastlane and its dependencies
+
+      - name: Setup iOS Code Signing (IMPORTANT: Manual Step Required)
+        # This is a critical step for iOS builds. You *must* configure
+        # how your certificates and provisioning profiles are handled in CI.
+        # Common methods include:
+        # 1. fastlane match: Recommended for managing signing identities.
+        #    You'd need to set up `match` and provide necessary secrets (e.g., MATCH_PASSWORD, Git repo access token).
+        # 2. Manual import using GitHub Secrets: Store your .p12 certificate
+        #    and .mobileprovision profiles as Base64 encoded strings in GitHub Secrets.
+        #    Example (you'll need to create these secrets in your GitHub repository settings):
+        #
+        #    IOS_P12_BASE64: Base64 encoded .p12 certificate content
+        #    IOS_P12_PASSWORD: Password for the .p12 file
+        #    IOS_PROVISIONING_PROFILE_BASE64: Base64 encoded .mobileprovision content
+        #    IOS_KEYCHAIN_PASSWORD: A password for the temporary keychain created in CI
+        #
+        #    Adjust the `run` commands below to decode and import your signing assets.
+        run: |
+          echo "--- iOS Code Signing Setup ---"
+          echo "WARNING: You need to replace this section with your actual code signing setup."
+          echo "Refer to Fastlane documentation and Apple's code signing guides for best practices."
+          echo "For example, using fastlane match is highly recommended for CI/CD."
+          # Example if using GitHub Secrets to store base64 encoded files:
+          # mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles/
+          # echo "${{ secrets.IOS_PROVISIONING_PROFILE_BASE64 }}" | base64 --decode > ~/Library/MobileDevice/Provisioning\ Profiles/YourApp.mobileprovision
+          # security create-keychain -p "${{ secrets.IOS_KEYCHAIN_PASSWORD }}" ios-build.keychain
+          # security default-keychain -s ios-build.keychain
+          # security unlock-keychain -p "${{ secrets.IOS_KEYCHAIN_PASSWORD }}" ios-build.keychain
+          # echo "${{ secrets.IOS_P12_BASE64 }}" | base64 --decode > temp_cert.p12
+          # security import temp_cert.p12 -k ios-build.keychain -P "${{ secrets.IOS_P12_PASSWORD }}" -A
+          # rm temp_cert.p12 # Clean up temporary p12 file
+          # Ensure your Fastfile's build command (`flutter build ios`) is configured to use these profiles.
+
+      - name: Build and Distribute App
+        # Set the Firebase CLI token as an environment variable for Fastlane
+        env:
+          FIREBASE_CLI_TOKEN: ${{ secrets.FIREBASE_CLI_TOKEN }}
+          # If you use Fastlane match with App Store Connect API Key, add it here:
+          # FASTLANE_API_KEY_JSON: ${{ secrets.FASTLANE_API_KEY_JSON }}
+        run: |
+          cd ios # Ensure you are in the iOS directory
+          # Run the Fastlane lane for Firebase distribution for iOS
+          bundle exec fastlane firebase_distribution
